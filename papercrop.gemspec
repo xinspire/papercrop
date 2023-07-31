@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'papercrop'
-  s.version       = '0.3.0'
+  s.version       = '0.3.0.kt-1'
   s.date          = '2015-09-23'
   s.summary       = "Paperclip extension for cropping images"
   s.description   = "An easy extension for Paperclip to crop your image uploads using jCrop"
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 3.1"
   s.add_dependency "jquery-rails"
-  s.add_dependency "paperclip", ">= 3.4"
+  s.add_dependency "kt-paperclip", ">= 3.4"
 
   s.add_development_dependency "rspec-rails", "~> 2.0"
   s.add_development_dependency "capybara", ">= 1.1.1"
