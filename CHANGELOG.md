@@ -1,4 +1,5 @@
-
+* v0.3.1
+    * Support signed_urls
 * v0.3.0
     * Fog storage support
     * Unlock aspect ratio

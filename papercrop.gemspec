@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'papercrop'
-  s.version       = '0.3.0.kt-1'
+  s.version       = '0.3.1.kt-1'
   s.date          = '2015-09-23'
   s.summary       = "Paperclip extension for cropping images"
   s.description   = "An easy extension for Paperclip to crop your image uploads using jCrop"

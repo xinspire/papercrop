@@ -14,6 +14,8 @@ module Papercrop
       attachment = attachment.to_sym
       width      = opts[:width] || 100
       height     = (width / self.object.send(:"#{attachment}_aspect")).round
+      signed     = opts[:signed]
+      time       = opts[:time] || 3600
 
       if self.object.send(attachment).class == Paperclip::Attachment
         wrapper_options = {
@@ -26,7 +28,12 @@ module Papercrop
           :style => "max-width:none; max-height:none"
         }
 
-        preview_image = @template.image_tag(self.object.send(attachment).url, image_options)
+        preview_image =
+          if signed
+            @template.image_tag(self.object.send(attachment).expiring_url(time), image_options)
+          else
+            @template.image_tag(self.object.send(attachment).url, image_options)
+          end
 
         @template.content_tag(:div, preview_image, wrapper_options)
       end
@@ -38,7 +45,7 @@ module Papercrop
     # You can restrict it by setting the :width option to the width you want.
     #
     #   cropbox :avatar, :width => 650
-    # 
+    #
     # Also, you can use some of the options jcrop has in its api for extra customization.
     # @see http://deepliquid.com/content/Jcrop_Manual.html
     # :width and :aspect are aliases for :box_width and :aspect_ratio respectively
@@ -46,7 +53,7 @@ module Papercrop
     #   cropbox :avatar, :box_width => 650, :aspect_ratio => 1, :set_select => [0, 0, 500, 500]
     #
     # Keep in mind that calling the cropbox with an empty or not persisted attachment will result into an empty div
-    # 
+    #
     # @param attachment [Symbol] attachment name
     # @param opts [Hash] @see Papercrop::Cropbox for more info
     def cropbox(attachment, opts = {})
